@@ -66,30 +66,44 @@
     </div>
   </div>
 
-  <!-- Swiper -->
-  <div class="swiper ulSwiper">
-    <ul class="swiper-wrapper">
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image1.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image2.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image3.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image4.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image5.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image6.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image7.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image8.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image9.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></li>
-        <li class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></li>
-    </ul>
-  </div>
-
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
   <!-- Initialize Swiper -->
   <script>
-    var swiper = new Swiper(".mySwiper", {});
-    var swiper = new Swiper(".ulSwiper", {});
+    var swiper = new Swiper(".mySwiper", {
+        autoHeight: false,
+        autoplay:3000,
+        centeredSlides: false,
+        delay: 100,
+        direction: 'horizontal', /* 'horizontal' | 'vertical' */
+        effect: 'slide', /* 'slide', 'fade', 'cube', 'coverflow', 'flip' or 'creative' */
+        grid: {
+            rows: 2,
+            fill: "row",
+        },
+        loop: true,
+        slidesPerView: 1, /* mobile First */
+        spaceBetween: 15,
+        speed: 400,
+        breakpoints: {
+            // when window width is >= 320px
+            320: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            // when window width is >= 480px
+            480: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            // when window width is >= 640px
+            640: {
+                slidesPerView: 4,
+                spaceBetween: 40
+            }
+        }
+    });
   </script>
 </body>
 
