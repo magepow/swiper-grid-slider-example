@@ -2,44 +2,46 @@
 class GridSlider extends HTMLElement {
   constructor() {
     super();
-    console.log(this);
-    this.querySelectorAll('.swiper').forEach((el) => {
-    	console.log(el);
-	    var swiper = new Swiper(el, {
-	        autoHeight: false,
-	        autoplay:3000,
-	        centeredSlides: false,
-	        delay: 100,
-	        direction: 'horizontal', /* 'horizontal' | 'vertical' */
-	        effect: 'slide', /* 'slide', 'fade', 'cube', 'coverflow', 'flip' or 'creative' */
-	        grid: {
-	            rows: 2,
-	            fill: "row",
-	        },
-	        init: true,
-	        loop: true,
-	        slidesPerView: 1, /* mobile First */
-	        spaceBetween: 15,
-	        speed: 400,
-	        breakpoints: {
-	            // when window width is >= 320px
-	            320: {
-	                slidesPerView: 2,
-	                spaceBetween: 20
-	            },
-	            // when window width is >= 480px
-	            480: {
-	                slidesPerView: 3,
-	                spaceBetween: 30
-	            },
-	            // when window width is >= 640px
-	            640: {
-	                slidesPerView: 4,
-	                spaceBetween: 40
-	            }
-	        }
+    const $this = this;
+    document.addEventListener('DOMContentLoaded', function() {
+	    $this.querySelectorAll('.swiper').forEach((el) => {
+	    	console.log(el);
+		    var swiper = new Swiper(el, {
+		        autoHeight: false,
+		        autoplay:3000,
+		        centeredSlides: false,
+		        delay: 100,
+		        direction: 'horizontal', /* 'horizontal' | 'vertical' */
+		        effect: 'slide', /* 'slide', 'fade', 'cube', 'coverflow', 'flip' or 'creative' */
+		        grid: {
+		            rows: 2,
+		            fill: "row",
+		        },
+		        init: true,
+		        loop: true,
+		        slidesPerView: 1, /* mobile First */
+		        spaceBetween: 15,
+		        speed: 400,
+		        breakpoints: {
+		            // when window width is >= 320px
+		            320: {
+		                slidesPerView: 2,
+		                spaceBetween: 20
+		            },
+		            // when window width is >= 480px
+		            480: {
+		                slidesPerView: 3,
+		                spaceBetween: 30
+		            },
+		            // when window width is >= 640px
+		            640: {
+		                slidesPerView: 4,
+		                spaceBetween: 40
+		            }
+		        }
+		    });
 	    });
-    });
+    })
 
   }
 
