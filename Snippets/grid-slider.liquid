@@ -53,18 +53,10 @@
 {% for cfg in configScreen %}
   {% assign size = cfg | split: '=>' | first | strip %}
   {% assign name = cfg | split: '=>' | last | strip %}
-  {% if settings['use-slider'] == true %}
-    {% if forloop.last == true %}
-      {% capture responsive %}{{responsive}} "1" : {"slidesPerView":  1 } }{% endcapture %}
-    {% else %}
-      {% capture responsive %}{{responsive}} "{{size}}" : {"slidesPerView":  {{settings[name]}} },{% endcapture %}
-    {% endif %}
+  {% if forloop.last == true %}
+    {% capture responsive %}{{responsive}} "1":{"slidesPerView":1 } }{% endcapture %}
   {% else %}
-    {% if forloop.last == true %}
-      {% capture responsive %}{{responsive}}{"1": "1"} }{% endcapture %}
-    {% else %}
-      {% capture responsive %}{{responsive}}{"{{size}}":"{{settings[name]}}" },{% endcapture %}
-    {% endif %}
+    {% capture responsive %}{{responsive}} "{{size}}":{"slidesPerView":{{settings[name]}} },{% endcapture %}
   {% endif %}
 {% endfor %}
 
