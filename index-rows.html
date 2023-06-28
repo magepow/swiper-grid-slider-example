@@ -36,7 +36,7 @@
       text-align: center;
       font-size: 18px;
       background: #fff;
-      height: calc((100% - 30px) / 2) !important;
+/*      height: calc((100% - 90px) / 3) !important;*/
 
       /* Center slide text vertically */
       display: flex;
@@ -59,6 +59,18 @@
       <div class="swiper-slide">Slide 7</div>
       <div class="swiper-slide">Slide 8</div>
       <div class="swiper-slide">Slide 9</div>
+      <div class="swiper-slide">Slide 10</div>
+      <div class="swiper-slide">Slide 11</div>
+      <div class="swiper-slide">Slide 12</div>
+      <div class="swiper-slide">Slide 13</div>
+      <div class="swiper-slide">Slide 14</div>
+      <div class="swiper-slide">Slide 15</div>
+      <div class="swiper-slide">Slide 16</div>
+      <div class="swiper-slide">Slide 17</div>
+      <div class="swiper-slide">Slide 18</div>
+      <div class="swiper-slide">Slide 19</div>
+      <div class="swiper-slide">Slide 20</div>
+
     </div>
     <div class="swiper-pagination"></div>
   </div>
@@ -69,7 +81,7 @@
   <!-- Initialize Swiper -->
   <script>
     var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 3,
+      slidesPerView: 1,
       grid: {
         rows: 2,
       },
@@ -78,7 +90,54 @@
         el: ".swiper-pagination",
         clickable: true,
       },
+      watchSlidesProgress:true,
+      watchSlidesVisibility:true,
+      breakpoints: {
+          // when window width is >= 320px
+          320: {
+              slidesPerView: 1,
+              spaceBetween: 20
+          },
+          // when window width is >= 480px
+          480: {
+              slidesPerView: 2,
+              spaceBetween: 30
+          },
+          // when window width is >= 990px
+          990: {
+              slidesPerView: 2,
+              spaceBetween: 40
+          },
+          // when window width is >= 1200px
+          1200: {
+              slidesPerView: 3,
+              spaceBetween: 40
+          }
+      },
+      on: {
+        init: function () {
+          console.log('swiper initialized', this);
+          console.log(this.slidesEl);
+        },
+        afterInit: function() {
+          console.log('After initialized', this);
+          console.log(this.slidesEl.id);
+          console.log(this.wrapperEl.id);
+        var swiperId = this.slidesEl.id,
+            spaceBetween = this.params.spaceBetween,
+            rows = this.params.grid.rows;
+            if(rows > 1){
+              var style = document.createElement('style');
+              style.setAttribute('type', 'text/css');
+              style.setAttribute('id', 'styleId');
+              style.textContent = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + rows*spaceBetween + 'px) / ' + rows + ') !important;}';
+              document.head.appendChild(style);
+            }
+        }
+      },
     });
+
+    console.log(swiper.slidesEl.getAttribute('id'));
   </script>
 </body>
 
