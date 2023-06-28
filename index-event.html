@@ -125,6 +125,11 @@
       console.log(this);
       console.log('Params Init', this.params);
       console.log('Params Special', this.passedParams);
+      console.log('currentBreakpoint', this.currentBreakpoint);
+    });
+
+    swiper.on('afterInit', function () {
+      console.log('After slider', this);
     });
 
     swiper.init();
