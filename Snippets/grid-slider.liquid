@@ -49,18 +49,18 @@
 {% endif %}
 
 {% assign configScreen = configScreen | strip_newlines | replace: ' ', '' | split: ',' %}
-{% assign responsive = '{' %}
+{% assign breakpoints = '{' %}
 {% for cfg in configScreen %}
   {% assign size = cfg | split: '=>' | first | strip %}
   {% assign name = cfg | split: '=>' | last | strip %}
   {% if forloop.last == true %}
-    {% capture responsive %}{{responsive}} "1":{"slidesPerView":1 } }{% endcapture %}
+    {% capture breakpoints %}{{breakpoints}} "1":{"slidesPerView":1 } }{% endcapture %}
   {% else %}
-    {% capture responsive %}{{responsive}} "{{size}}":{"slidesPerView":{{settings[name]}} },{% endcapture %}
+    {% capture breakpoints %}{{breakpoints}} "{{size}}":{"slidesPerView":{{settings[name]}} },{% endcapture %}
   {% endif %}
 {% endfor %}
 
-{% capture gridSlider %} data-wrapper='#shopify-section-{{section.id}}' {{gridSlider}} data-breakpoints='{{responsive}}' {% endcapture %}
+{% capture gridSlider %} data-wrapper='#shopify-section-{{section.id}}' {{gridSlider}} data-breakpoints='{{breakpoints}}' {% endcapture %}
 {% assign grid-slider = gridSlider %}
 
 {% comment %}
