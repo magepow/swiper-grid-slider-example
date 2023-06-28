@@ -21,9 +21,7 @@ class GridSlider extends HTMLElement {
   }
 
   initSlider() {
-    var $head = document.querySelector("head"),
-      $body = document.querySelector("body"),
-      isRTL = $body.classList.contains("rtl"),
+    var isRTL = document.body.classList.contains("rtl"),
       options = this.datasetToObject(this.dataset);
     this.querySelectorAll(".swiper").forEach((element) => {
       if (element.classList.contains("grid-init")) return;
@@ -109,8 +107,7 @@ class GridSlider extends HTMLElement {
           clearRtl +
           "}";
       });
-      $head.innerHTML +=
-        '<style type="text/css" id="' + styleId + '" >' + style + "</style>";
+      this.appendStyle(style);
     });
   }
 
@@ -142,12 +139,32 @@ class GridSlider extends HTMLElement {
   }
 
   sliderRender(element) {
+    var $this = this;
     if (element.classList.contains("swiper-initialized")) {
       return;
     }
-    var options = this.datasetToObject(this.dataset);
+    var options = this.datasetToObject(this.dataset) || {};
+    options.on = {
+      afterInit: function(){
+        var swiperId = this.slidesEl.id,
+          spaceBetween = this.params.spaceBetween,
+          rows = this.params.grid.rows;
+        if(rows > 1){
+          var style = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + rows*spaceBetween + 'px) / ' + rows + ') !important;}';
+          $this.appendStyle(style);
+        }
+      }
+    }
     var swiper = new Swiper(element, options);
   }
+
+  appendStyle(css) {
+    var style = document.createElement('style');
+      style.setAttribute('type', 'text/css');
+      style.textContent = css;
+    document.head.appendChild(style);
+  }
+
 }
 
 customElements.define("grid-slider", GridSlider);
