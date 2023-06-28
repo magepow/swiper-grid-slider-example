@@ -123,7 +123,8 @@
     swiper.on('init', function () {
       console.log('Init slider');
       console.log(this);
-      console.log(this.params);
+      console.log('Params Init', this.params);
+      console.log('Params Special', this.passedParams);
     });
 
     swiper.init();
