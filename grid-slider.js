@@ -131,7 +131,7 @@ class GridSlider extends HTMLElement {
           spaceBetween = this.params.spaceBetween,
           rows = this.params.grid.rows;
         if(rows > 1){
-          var style = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + rows*spaceBetween + 'px) / ' + rows + ') !important;}';
+          var style = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + (rows -1)*spaceBetween + 'px) / ' + rows + ') !important;}';
           $this.appendStyle(style);
         }
       }

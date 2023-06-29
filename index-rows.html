@@ -135,7 +135,7 @@
               var style = document.createElement('style');
               style.setAttribute('type', 'text/css');
               style.setAttribute('id', 'styleId');
-              style.textContent = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + rows*spaceBetween + 'px) / ' + rows + ') !important;}';
+              style.textContent = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + (rows -1)*spaceBetween + 'px) / ' + rows + ') !important;}';
               document.head.appendChild(style);
             }
         }
