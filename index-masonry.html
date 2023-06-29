@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <!-- Demo styles -->
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+.swiper-wrapper{
+   box-sizing: border-box !important;
+   display: flex !important;
+   flex-flow: column wrap !important;
+   height: 80vh !important;
+   text-align: center !important;
+   text-transform: uppercase !important;
+   width: 100% !important;
+   left: 0;
+   transition-timing-function: linear !important;
+} 
+
+.grids {
+    align-items: center !important;
+    background: white !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    box-sizing: border-box !important;
+    color: white !important;
+    display: flex !important;
+    flex-grow: 0 !important;
+    font-family: sans-serif !important;
+    font-size: 20px !important;
+    height: 50% !important;
+    justify-content: center !important;
+    max-width: 100% !important;
+    border: 3px solid white;
+}
+  
+.grids:nth-child(6n-5) {
+    height: 30% !important;
+    width: 25% !important;
+}
+
+.grids:nth-child(6n-4) {
+    height: 70% !important;
+    width: 25% !important;
+}
+
+.grids:nth-child(6n-3) {
+    height: 50% !important;
+    width: 30% !important;
+}
+
+.grids:nth-child(6n-2) {
+    height: 50% !important;
+    width: 30% !important;
+}
+  
+.grids:nth-child(6n-1) {
+    height: 60% !important;
+    width: 40% !important;
+}
+
+.grids:nth-child(6n) {
+    height:40% !important;
+    width: 40% !important;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+
+  </style>
+
+</head>
+
+<body>
+  https://stackoverflow.com/questions/72424396/why-in-the-infinite-loop-the-sliders-in-swiper-js-jump-when-the-loop-ends
+  <!-- Swiper -->
+<div class="swiper masonrySwiper" style="border: 3px solid red; width: 100%;">
+    <div class="swiper-wrapper" style="border: 3px solid green; width: 100%;">
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/1') !important">Slide 1</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/2') !important">Slide 2</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/3') !important">Slide 3</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/4') !important">Slide 4</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/5') !important">Slide 5</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/6') !important">Slide 6</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/7') !important">Slide 7</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/8') !important">Slide 8</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/9') !important">Slide 9</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/10') !important">Slide 10</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/11') !important">Slide 11</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/12') !important">Slide 12</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/13') !important">Slide 13</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/14') !important">Slide 14</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/15') !important">Slide 15</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/16') !important">Slide 16</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/17') !important">Slide 17</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/18') !important">Slide 18</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/19') !important">Slide 19</div>
+      <div class="swiper-slide grids" style="background-image: url('https://source.unsplash.com/random/20') !important">Slide 20</div>
+      
+ </div>
+</div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".masonrySwiper", {
+        direction:"horizontal",
+        loop: true,
+        slidesPerView: 8,
+        simulateTouch:false,
+
+        autoplay: {
+          enabled: true,
+          delay: 1,          
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false,
+        },
+        centerInsufficientSlides:true,
+        speed: 700,               
+    });
+  </script>
+</body>
+
+</html>
