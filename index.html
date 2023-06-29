@@ -64,6 +64,9 @@
         <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></div>
         <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
   </div>
 
   <!-- Swiper JS -->
@@ -87,6 +90,14 @@
         spaceBetween: 15,
         speed: 400,
         zoom: true,
+        navigation: {
+          nextEl: ".swiper-button-next", 
+          prevEl: ".swiper-button-prev"
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: "true"
+        },
         breakpoints: {
             // when window width is >= 320px
             320: {
