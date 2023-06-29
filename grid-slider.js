@@ -73,12 +73,7 @@ class GridSlider extends HTMLElement {
             maxWith = size;
             col = num;
           });
-          style +=
-            " @media (min-width: " +
-            minWith +
-            "px) and (max-width: " +
-            maxWith +
-            "px)";
+          style += ' @media (min-width: ' + minWith + 'px) and (max-width: ' + maxWith + 'px)';
         } else {
           if (key + 2 == length) return; // don't use key = length - 1;
           Object.entries(responsive[key]).forEach((entry) => {
@@ -87,25 +82,11 @@ class GridSlider extends HTMLElement {
             maxWith = size;
             col = num;
           });
-          style += " @media (min-width: " + maxWith + "px)";
+          style += ' @media (min-width: ' + maxWith + 'px)';
         }
-        var clearRtl = classes + ":nth-child(" + col + "n+1){clear: left}";
-        clearRtl +=
-          " .rtl " + classes + ":nth-child(" + col + "n+1){clear: right}";
-        style +=
-          " {" +
-          selector +
-          "{margin: 0 -" +
-          padding +
-          "px}" +
-          classes +
-          "{padding: 0 " +
-          padding +
-          "px; box-sizing: border-box; width: calc(100% / " +
-          col +
-          ")} " +
-          clearRtl +
-          "}";
+        var clearRtl = classes + ':nth-child(' + col + 'n+1){clear: left}';
+        clearRtl += ' .rtl ' + classes + ':nth-child(' + col + 'n+1){clear: right}';
+        style += ' {' + selector + '{margin: 0 -' + padding + 'px}' + classes + '{padding: 0 ' + padding + 'px; box-sizing: border-box; width: calc(100% / ' + col + ')} ' + clearRtl + '}';
       });
       this.appendStyle(style);
     });
