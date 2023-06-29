@@ -20,6 +20,7 @@
     pagination,
     effect,
     loop,
+    grid,
     space-Between,
     slides-Per-View,
     slides-Per-Group,
@@ -31,14 +32,17 @@
   {% assign configSwiper = configSwiper | strip_newlines | replace: ' ', '' | split: ',' %}
   {% for opt in configSwiper %}
     {% assign value = settings[opt] %}
-    {% if opt == 'slides-Per-View' %}
-      {% assign value = settings.mobile %}
-    {% endif %}
     {% if opt == 'navigation' and value == true %}
       {% assign value = '{"nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev"}' %}
     {% endif %}
     {% if opt == 'pagination' and value == true %}
       {% assign value = '{"el": ".swiper-pagination", "clickable": "true"}' %}
+    {% endif %}
+    {% if opt == 'grid' %}
+      {% assign value = settings.rows | prepend: '{"fill": "row", "rows": ' | append: '}' %}
+    {% endif %}
+    {% if opt == 'slides-Per-View' %}
+      {% assign value = settings.mobile %}
     {% endif %}
     {% if value != blank or value == true or value == false %}
       {% capture gridSlider %}{{gridSlider}} data-{{opt}}='{{value}}'{% endcapture %}
