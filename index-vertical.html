@@ -31,6 +31,7 @@
     }
 
     .swiper-slide {
+      height: 300px;
       text-align: center;
       font-size: 18px;
       background: #fff;
@@ -45,24 +46,31 @@
       height: 100%;
       object-fit: cover;
     }
+
+    .swiper-container {
+/*      width: 100px;*/
+      height: 800px;
+    }
   </style>
 </head>
 
 <body>
   <!-- Swiper -->
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
-      <div class="swiper-slide">Slide 4</div>
-      <div class="swiper-slide">Slide 5</div>
-      <div class="swiper-slide">Slide 6</div>
-      <div class="swiper-slide">Slide 7</div>
-      <div class="swiper-slide">Slide 8</div>
-      <div class="swiper-slide">Slide 9</div>
+  <div class="swiper-container">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        <div class="swiper-slide">Slide 4</div>
+        <div class="swiper-slide">Slide 5</div>
+        <div class="swiper-slide">Slide 6</div>
+        <div class="swiper-slide">Slide 7</div>
+        <div class="swiper-slide">Slide 8</div>
+        <div class="swiper-slide">Slide 9</div>
+      </div>
+      <div class="swiper-pagination"></div>
     </div>
-    <div class="swiper-pagination"></div>
   </div>
 
   <!-- Swiper JS -->
@@ -74,6 +82,11 @@
       direction: "vertical",
       spaceBetween: 10,
       slidesPerView: 4,
+      // slidesPerView: 'auto',
+      // grid: {
+      //   rows: 1,
+      //   fill: 'column',
+      // },
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
