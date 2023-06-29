@@ -25,11 +25,6 @@
       padding: 0;
     }
 
-    .swiper {
-      width: 100%;
-      height: 100%;
-    }
-
     .swiper-slide {
       text-align: center;
       font-size: 18px;
@@ -41,8 +36,9 @@
 
     .swiper-slide img {
       display: block;
-      width: 100%;
-      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      max-height: auto;
       object-fit: cover;
     }
   </style>
@@ -65,6 +61,9 @@
         <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></div>
         <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
   </div>
 
   <div class="swiper mySwiper">
@@ -81,6 +80,9 @@
         <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></div>
         <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
   </div>
 
   <!-- Swiper JS -->
@@ -104,6 +106,14 @@
         slidesPerView: 1, /* mobile First */
         spaceBetween: 15,
         speed: 400,
+        navigation: {
+          nextEl: ".swiper-button-next", 
+          prevEl: ".swiper-button-prev"
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: "true"
+        },
         breakpoints: {
             // when window width is >= 320px
             320: {
@@ -121,12 +131,25 @@
                 spaceBetween: 40
             }
         },
+        appendStyle: function(css) {
+          var style = document.createElement('style');
+            style.setAttribute('type', 'text/css');
+            style.textContent = css;
+          document.head.appendChild(style);
+        },
         on: {
           init: function () {
             console.log('swiper initialized', this);
           },
           afterInit: function() {
             console.log('After initialized', this);
+            var swiperId = this.slidesEl.id,
+              spaceBetween = this.params.spaceBetween,
+              rows = this.params.grid.rows;
+            if(rows > 1){
+              var style = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + (rows -1)*spaceBetween + 'px) / ' + rows + ') !important;}';
+              this.params.appendStyle(style);
+            }
           }
         },
     });
@@ -140,7 +163,7 @@
         direction: 'horizontal', /* 'horizontal' | 'vertical' */
         effect: 'slide', /* 'slide', 'fade', 'cube', 'coverflow', 'flip' or 'creative' */
         grid: {
-            rows: 2,
+            rows: 1,
             fill: "row",
         },
         init: false,
@@ -148,6 +171,14 @@
         slidesPerView: 1, /* mobile First */
         spaceBetween: 15,
         speed: 400,
+        navigation: {
+          nextEl: ".swiper-button-next", 
+          prevEl: ".swiper-button-prev"
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: "true"
+        },
         breakpoints: {
             // when window width is >= 320px
             320: {
