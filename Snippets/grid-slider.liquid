@@ -38,7 +38,7 @@
     {% if opt == 'pagination' and value == true %}
       {% assign value = '{"el": ".swiper-pagination", "clickable": "true"}' %}
     {% endif %}
-    {% if opt == 'grid' %}
+    {% if opt == 'grid' and settings.rows > 1 %}
       {% assign value = settings.rows | prepend: '{"fill": "row", "rows": ' | append: '}' %}
     {% endif %}
     {% if opt == 'slides-Per-View' %}
