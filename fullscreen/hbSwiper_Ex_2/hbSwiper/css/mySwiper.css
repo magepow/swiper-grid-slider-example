@@ -1,0 +1,54 @@
+:root {
+    --swiper-width-1: 800px;
+    --swiper-height-1: 230px;
+    --swiper-width-2: 600px;
+    --swiper-height-2: 400px;
+}
+
+#mySwiperContainer_2,
+#mySwiperContainer_1 {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#mySwiperContainer_1 {
+    width: var(--swiper-width-1);
+    height: var(--swiper-height-1);
+}
+
+#mySwiperContainer_2 {
+    width: var(--swiper-width-2);
+    height: var(--swiper-height-2);
+}
+
+#myImgDescription_2,
+#myImgDescription_1 {
+    position: relative;
+    margin: 64px auto 0 auto;
+}
+
+#myImgDescription_1 {
+    width: calc(var(--swiper-width-1) - 40px);
+    /* min-height hängt vom umfangreichsten Text ab: */
+    min-height: 126px;
+}
+
+#myImgDescription_2 {
+    width: calc(var(--swiper-width-2) - 40px);
+    /* min-height hängt vom umfangreichsten Text ab: */
+    min-height: 46px;
+}
+
+@media (max-width: 1000px) {
+    #mySwiperContainer_2,
+    #mySwiperContainer_1 {
+        width: 100%;
+    }
+    #myImgDescription_2,
+    #myImgDescription_1 {
+        width: 95%;
+        min-height: 20px;
+        margin: 64px 2% 0 3%;
+    }
+}

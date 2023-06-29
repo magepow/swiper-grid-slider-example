@@ -1,0 +1,29 @@
+:root {
+    --swiper-width-1: 800px;
+    --swiper-height-1: 450px;
+}
+
+#mySwiperContainer_1 {
+    width: var(--swiper-width-1);
+    height: var(--swiper-height-1);
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#myImgDescription_1 {
+    width: calc(var(--swiper-width-1) - 40px);
+    min-height: 126px;
+    margin: 64px auto 0 auto;
+}
+
+@media (max-width: 1000px) {
+    #mySwiperContainer_1 {
+        width: 100%;
+    }
+    #myImgDescription_1 {
+        width: 95%;
+        min-height: 20px;
+        margin: 64px 2% 0 3%;
+    }
+}
