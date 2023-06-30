@@ -227,13 +227,14 @@
     });
 
 
-    var mySwiper = document.querySelector('.mySwiper');
-    console.log(mySwiper);
+    var mySwiperBeforeInit = document.querySelector('.mySwiper');
+    console.log('Access swiper from element', mySwiperBeforeInit.swiper);
 
     swiper.init();
 
-    var mySwiper = document.querySelector('.mySwiper');
-    console.log(mySwiper);
+    var mySwiperAfterInit = document.querySelector('.mySwiper');
+    console.log('Access swiper from element', mySwiperAfterInit.swiper);
+
 
   </script>
 </body>
