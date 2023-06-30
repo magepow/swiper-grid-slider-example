@@ -248,6 +248,7 @@ for (var y = 0; y < closeButtons.length; ++y) {
           fullscreenElements[x].classList.remove('swiper--fullscreen');
           setTimeout(function() {
             galleryTop.update();
+            galleryTop.zoom.out()
             galleryThumbs.update();
           }, 200);
       }
