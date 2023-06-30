@@ -93,6 +93,36 @@ class GridSlider extends HTMLElement {
   }
 
   datasetToObject(dataset) {
+    var object = Object.assign({}, dataset);
+    for (var property in object) {
+      var value = object[property];
+      switch(value) {
+        case null:
+          value = null;
+          break;
+        case false:
+          value = false;
+          break;
+        case true:
+          value = true;
+          break;
+        case !isNaN(value):
+          value = Number(value);
+          break;
+        default:
+          try {
+            value = JSON.parse(value);
+          } catch (e) {
+            value = value
+          }
+        object[property] = value
+      }
+    }
+
+    return object;
+  }
+  
+  datasetParseToObject(dataset) {
     return JSON.parse(JSON.stringify(dataset), (key, value) => {
       if (value === "null") return null;
       if (value === "true") return true;
