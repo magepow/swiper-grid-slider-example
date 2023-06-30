@@ -113,12 +113,11 @@ class GridSlider extends HTMLElement {
           try {
             value = JSON.parse(value);
           } catch (e) {
-            value = value
+            value = value;
           }
-        object[property] = value
       }
+      object[property] = value;
     }
-
     return object;
   }
   
