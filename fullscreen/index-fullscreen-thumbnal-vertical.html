@@ -205,6 +205,7 @@
     var galleryThumbs = new Swiper(".gallery-thumbs", {
       direction: "vertical", /* "horizontal || vertical" */
       loop: true,
+      observer: true,
       spaceBetween: 10,
       slidesPerView: 8,
       freeMode: true,
@@ -225,15 +226,15 @@
     });
 
     console.log(galleryTop);
+    console.log(document.querySelector('.gallery-thumbs').swiper);
 var sliders = document.querySelectorAll('.gallery-top .swiper-slide');
 for (var i = 0; i < sliders.length; ++i) {
    sliders[i].addEventListener('click', function(event) {
       event.target.closest('.swiper-container').classList.add('swiper--fullscreen');
       document.body.classList.add('swiper__fullscreen');
       setTimeout(function() {
-         galleryThumbs.params.direction='horizontal';
+         galleryThumbs.changeDirection('horizontal', true);
          galleryTop.update();
-         galleryThumbs.update();
       }, 200);
    }, false);
 }
@@ -250,9 +251,9 @@ for (var y = 0; y < closeButtons.length; ++y) {
       for (var x = 0; x < fullscreenElements.length; ++x) {
           fullscreenElements[x].classList.remove('swiper--fullscreen');
           setTimeout(function() {
+            galleryThumbs.changeDirection('vertical', true);
+            galleryTop.zoom.out();
             galleryTop.update();
-            galleryTop.zoom.out()
-            galleryThumbs.update();
           }, 200);
       }
    });
