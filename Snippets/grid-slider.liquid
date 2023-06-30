@@ -54,13 +54,17 @@
 
 {% assign configScreen = configScreen | strip_newlines | replace: ' ', '' | split: ',' %}
 {% assign breakpoints = '{' %}
+{% assign col = '1' %}
 {% for cfg in configScreen %}
   {% assign size = cfg | split: '=>' | first | strip %}
   {% assign name = cfg | split: '=>' | last | strip %}
   {% if forloop.last == true %}
-    {% capture breakpoints %}{{breakpoints}} "1":{"slidesPerView":1 } }{% endcapture %}
+    {% capture breakpoints %}{{breakpoints}} "1":{"slidesPerView":{{ col }} } }{% endcapture %}
   {% else %}
-    {% capture breakpoints %}{{breakpoints}} "{{size}}":{"slidesPerView":{{settings[name]}} },{% endcapture %}
+    {% if settings[name] != blank %}
+      {% assign col = settings[name] %}
+      {% capture breakpoints %}{{breakpoints}} "{{size}}":{"slidesPerView":{{col}} },{% endcapture %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 
