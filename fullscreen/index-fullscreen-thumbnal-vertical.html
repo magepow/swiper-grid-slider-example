@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <!-- Demo styles -->
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #000;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1170px;
+      height: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .gallery-top {
+      height: 100%;
+      width: 80%;
+    }
+
+    .gallery-thumbs {
+      height: 100%;
+      width: 20%;
+      box-sizing: border-box;
+      padding: 10px 0;
+    }
+
+    .gallery-thumbs .swiper-slide {
+      width: 25%;
+      height: 100%;
+      opacity: 0.4;
+      background-size: cover;
+      cursor: pointer;
+    }
+
+    .gallery-thumbs .swiper-slide-thumb-active {
+      opacity: 1;
+    }
+
+   .swiper-container {
+      width: 100%;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+   }
+   
+   .swiper-slide {
+      cursor: pointer;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+   }
+   
+   .close-button {
+      display: none;
+      height: 45px;
+      width: 45px;
+      color: #fff;
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      font-size: 32px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 9999;
+      opacity: .75;
+   }
+   
+   .close-button:before {
+      content: '×';
+   }
+   
+   .close-button:hover,
+   .close-button:active {
+      opacity: 1;
+   }
+   
+   .swiper--fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #161418;
+   }
+   
+   .swiper--fullscreen .gallery-top .swiper-slide {
+      cursor: default;
+      background-size: contain;
+   }
+   
+   .swiper--fullscreen .close-button {
+      display: block;
+   }
+   
+   .swiper--fullscreen .gallery-top {
+      height: 100%
+   }
+   
+   .swiper--fullscreen .gallery-thumbs {
+      background-color: #000;
+      height: 20%;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      opacity: 0;
+      z-index: 10;
+      transition: opacity .3s ease-in-out;
+      transition-delay: .5s;
+   }
+   
+   .swiper--fullscreen .gallery-thumbs:hover {
+      opacity: 1;
+      transition-delay: 0s;
+   }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="swiper-container">
+      <span class="close-button"></span>
+      <!-- Swiper -->
+      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="gallery-top swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image1.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image2.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image3.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image4.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image5.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image6.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image7.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image8.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image9.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></div></div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+      <div thumbsSlider="" class="gallery-thumbs swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image1.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image2.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image3.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image4.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image5.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image6.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image7.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image8.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image9.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></div>
+        </div>
+      </div>    
+    </div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var galleryThumbs = new Swiper(".gallery-thumbs", {
+      direction: "vertical", /* "horizontal || vertical" */
+      loop: true,
+      spaceBetween: 10,
+      slidesPerView: 8,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+    var galleryTop = new Swiper(".gallery-top", {
+      loop: true,
+      zoom: true,
+      slidesPerView: 1,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      thumbs: {
+        swiper: galleryThumbs,
+      },
+    });
+
+    console.log(galleryTop);
+var sliders = document.querySelectorAll('.gallery-top .swiper-slide');
+for (var i = 0; i < sliders.length; ++i) {
+   sliders[i].addEventListener('click', function(event) {
+      event.target.closest('.swiper-container').classList.add('swiper--fullscreen');
+      document.body.classList.add('swiper__fullscreen');
+      setTimeout(function() {
+         galleryThumbs.params.direction='horizontal';
+         galleryTop.update();
+         galleryThumbs.update();
+      }, 200);
+   }, false);
+}
+
+var closeButtons = document.querySelectorAll('.close-button');
+for (var y = 0; y < closeButtons.length; ++y) {
+   closeButtons[y].addEventListener('click', function(event) {
+      console.log(event);
+      document.body.classList.remove('swiper__fullscreen');
+      // document.body.fadeOut(150)
+      // document.body.fadeIn(150);
+      var fullscreenElements = document.querySelectorAll('.swiper--fullscreen');
+      console.log(fullscreenElements);
+      for (var x = 0; x < fullscreenElements.length; ++x) {
+          fullscreenElements[x].classList.remove('swiper--fullscreen');
+          setTimeout(function() {
+            galleryTop.update();
+            galleryTop.zoom.out()
+            galleryThumbs.update();
+          }, 200);
+      }
+   });
+}
+
+  </script>
+</body>
+
+</html>
