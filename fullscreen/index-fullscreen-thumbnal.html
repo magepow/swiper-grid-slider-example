@@ -26,6 +26,7 @@
     }
     .container {
       max-width: 1170px;
+      height: 800px;
       margin: 0 auto;
       text-align: center;
     }
@@ -162,17 +163,17 @@
       <!-- Swiper -->
       <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="gallery-top swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image1.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image2.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image3.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image4.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image5.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image6.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image7.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image8.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image9.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></div>
-          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image1.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image2.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image3.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image4.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image5.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image6.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image7.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image8.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image9.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></div></div>
+          <div class="swiper-slide"><div class="swiper-zoom-container"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></div></div>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -201,6 +202,7 @@
   <!-- Initialize Swiper -->
   <script>
     var galleryThumbs = new Swiper(".gallery-thumbs", {
+      // direction: "vertical",
       loop: true,
       spaceBetween: 10,
       slidesPerView: 8,
@@ -209,6 +211,7 @@
     });
     var galleryTop = new Swiper(".gallery-top", {
       loop: true,
+      zoom: true,
       slidesPerView: 1,
       spaceBetween: 10,
       navigation: {
@@ -237,14 +240,16 @@ for (var y = 0; y < closeButtons.length; ++y) {
    closeButtons[y].addEventListener('click', function(event) {
       console.log(event);
       document.body.classList.remove('swiper__fullscreen');
+      // document.body.fadeOut(150)
+      // document.body.fadeIn(150);
       var fullscreenElements = document.querySelectorAll('.swiper--fullscreen');
       console.log(fullscreenElements);
       for (var x = 0; x < fullscreenElements.length; ++x) {
-         fullscreenElements[x].classList.remove('swiper--fullscreen');
-         setTimeout(function() {
+          fullscreenElements[x].classList.remove('swiper--fullscreen');
+          setTimeout(function() {
             galleryTop.update();
             galleryThumbs.update();
-         }, 200);
+          }, 200);
       }
    });
 }
