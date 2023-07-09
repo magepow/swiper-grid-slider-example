@@ -24,7 +24,7 @@ class MediaGallery extends HTMLElement {
     if (this.classList.contains("media-gallery-init")) return;
     this.classList.add('media-gallery-init');
     var isRTL = document.body.classList.contains("rtl"),
-        selector = "grid-slider-" + this.uniqid(),
+        selector = "media-gallery-" + this.uniqid(),
         gallery  = this.querySelector("gallery"),
         thumbnail = this.querySelector("thumbnail"),
         mainAPI      = {};
