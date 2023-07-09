@@ -25,15 +25,27 @@ class MediaGallery extends HTMLElement {
     this.classList.add('media-gallery-init');
     var isRTL = document.body.classList.contains("rtl"),
         selector = "grid-slider-" + this.uniqid(),
-        galleryMain  = this.querySelector(".gallery-main"),
-        galleryThumb = this.querySelector(".gallery-thumbnail"),
+        gallery  = this.querySelector("gallery"),
+        thumbnail = this.querySelector("thumbnail"),
         mainAPI      = {};
-        if (galleryThumb) {
-            if(isRTL) galleryThumb.setAttribute("dir", "rtl");
-            var sliderThumb = this.renderSlider(galleryThumb);
+        if (thumbnail) {
+            if(isRTL) thumbnail.setAttribute("dir", "rtl");
+            var sliderThumb = this.renderSlider(thumbnail);
             Object.assign(mainAPI, { thumbs: {swiper: sliderThumb } });
         }
-        var sliderMain  = this.renderSlider(galleryMain, mainAPI);
+        var sliderMain  = this.renderSlider(gallery, mainAPI);
+        document.body.addEventListener("afterVariantUpdated", function (event) {
+            var variant = event.detail;
+            if("featured_media", variant){
+                var mediaId = variant.featured_media.id;
+                sliderMain.slides.forEach(function(item, index){
+                  if(item.dataset.mediaId == mediaId){
+                    sliderMain.slideTo(index); 
+                    return false;             
+                  }
+                });             
+            }
+        });
   }
 
   datasetToObject(dataset) {
@@ -73,11 +85,12 @@ class MediaGallery extends HTMLElement {
     Object.assign(options, api);
     options.on = {
       afterInit: function(){
+        if(this.params.direction == 'vertical') return;
         var swiperId = this.slidesEl.id,
           spaceBetween = this.params.spaceBetween,
           rows = this.params.grid.rows;
         if(rows > 1){
-          var style = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + (rows -1)*spaceBetween + 'px) / ' + rows + ') !important;}';
+          var style = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + (rows -1)*spaceBetween + 'px) / ' + rows + ');}';
           $this.appendStyle(style);
         }
       }
