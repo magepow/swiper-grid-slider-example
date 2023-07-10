@@ -25,8 +25,8 @@ class MediaGallery extends HTMLElement {
     this.classList.add('media-gallery-init');
     var isRTL = document.body.classList.contains("rtl"),
         selector = "media-gallery-" + this.uniqid(),
-        gallery  = this.querySelector("gallery"),
-        thumbnail = this.querySelector("thumbnail"),
+        gallery  = this.querySelector("gallery .swiper"),
+        thumbnail = this.querySelector("thumbnail .swiper"),
         mainAPI      = {};
         if (thumbnail) {
             if(isRTL) thumbnail.setAttribute("dir", "rtl");
