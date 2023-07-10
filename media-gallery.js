@@ -5,7 +5,7 @@ class MediaGallery extends HTMLElement {
     document.addEventListener("DOMContentLoaded", function (event) {
       $this.initSlider();
     });
-    document.addEventListener("mediaAjax", function (event) {
+    document.addEventListener("MediaGalleryAjax", function (event) {
       $this.initSlider();
     });
   }
