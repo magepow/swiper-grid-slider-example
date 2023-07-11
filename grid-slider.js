@@ -157,12 +157,16 @@ class GridSlider extends HTMLElement {
     options.on = {
       afterInit: function(){
         var swiperId = this.slidesEl.id,
+          breakpoint = this.currentBreakpoint,
           spaceBetween = this.params.spaceBetween,
           rows = this.params.grid.rows;
-        if(rows > 1){
-          var style = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + (rows -1)*spaceBetween + 'px) / ' + rows + ') !important;}';
-          $this.appendStyle(style);
-        }
+          if(this.params.direction == 'vertical'){
+            rows = this.params.breakpoints[breakpoint];
+          }
+          if(rows > 1){
+            var style = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + (rows -1)*spaceBetween + 'px) / ' + rows + ') !important;}';
+            $this.appendStyle(style);
+          }
       }
     }
     var swiper = new Swiper(element, options);
