@@ -5,7 +5,7 @@ class GridSlider extends HTMLElement {
     document.addEventListener("DOMContentLoaded", function (event) {
       $this.initSlider();
     });
-    document.addEventListener("GridSliderUpdate", function (event) {
+    document.addEventListener("GridSliderUpdated", function (event) {
       $this.initSlider();
     });
   }

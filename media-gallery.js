@@ -5,7 +5,7 @@ class MediaGallery extends HTMLElement {
     document.addEventListener("DOMContentLoaded", function (event) {
       $this.initSlider();
     });
-    document.addEventListener("MediaGalleryUpdate", function (event) {
+    document.addEventListener("MediaGalleryUpdated", function (event) {
       $this.initSlider();
     });
   }
