@@ -8,6 +8,7 @@ class MediaGallery extends HTMLElement {
     document.addEventListener("MediaGalleryUpdated", function (event) {
       $this.initSlider();
     });
+    document.dispatchEvent(new CustomEvent('MediaGalleryReady', {detail:$this}));
   }
   uniqid(length) {
     length = length || 10;
