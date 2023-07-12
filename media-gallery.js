@@ -30,7 +30,7 @@ class MediaGallery extends HTMLElement {
         options   = this.datasetToObject(gallery.dataset) || {},
         mainAPI   = {};
     this.selector  = "media-gallery-" + this.uniqid();
-    if (!gallery.classList.contains('gallery-main-grid') || window.matchMedia("(max-width: 990px)").matches) {
+    if (!gallery.classList.contains('gallery-main-grid') || window.matchMedia(options.matchMedia).matches) {
       if (thumbnail) {
           if(isRTL) thumbnail.setAttribute("dir", "rtl");
           var sliderThumb = this.renderSlider(thumbnail);
