@@ -23,13 +23,14 @@ class MediaGallery extends HTMLElement {
 
   initMedia() {
     if (this.classList.contains("media-gallery-init")) return;
+    this.selector  = "media-gallery-" + this.uniqid();
+    this.classList.add(this.selector);
     this.classList.add('media-gallery-init');
     var isRTL     = document.body.classList.contains("rtl"),
         gallery   = this.querySelector("gallery .swiper"),
         thumbnail = this.querySelector("thumbnail .swiper"),
         options   = this.datasetToObject(gallery.dataset) || {},
         mainAPI   = {};
-    this.selector  = "media-gallery-" + this.uniqid();
     if (!gallery.classList.contains('gallery-main-grid') || window.matchMedia(options.matchMedia).matches) {
       if (thumbnail) {
           if(isRTL) thumbnail.setAttribute("dir", "rtl");
@@ -40,6 +41,7 @@ class MediaGallery extends HTMLElement {
     }else{
       this.renderGrid(gallery);
     }
+    this.renderVenoBox(gallery);
     document.body.addEventListener("afterVariantUpdated", function (event) {
         var variant = event.detail;
         if("featured_media", variant){
@@ -172,6 +174,26 @@ class MediaGallery extends HTMLElement {
         style += ' {' + selector + '{margin: 0 -' + padding + 'px}' + classes + '{padding: 0 ' + padding + 'px; box-sizing: border-box; width: calc(100% / ' + col + ')} ' + clearRtl + '}';
       });
       this.appendStyle(style);    
+  }
+
+  renderVenoBox(gallery) {
+    document.dispatchEvent(new Event('VenoboxAssets'));
+    document.addEventListener("VenoboxAssetsReady", () => {
+        gallery.querySelectorAll('img').forEach(function(img, index){
+            var src = img.getAttribute('src');
+            img.setAttribute("data-href", src);
+            img.setAttribute("data-gall", 'gallery');
+        });
+        gallery.classList.add('venobox-init');
+        
+        new VenoBox({
+            selector: '.' + this.selector + ' gallery img',
+            numeration: true,
+            infinigall: true,
+            share: false,
+            spinner: 'rotating-plane'
+        });
+    });    
   }
   
   appendStyle(css) {
