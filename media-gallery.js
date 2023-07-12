@@ -3,10 +3,10 @@ class MediaGallery extends HTMLElement {
     super();
     var $this = this;
     document.addEventListener("DOMContentLoaded", function (event) {
-      $this.initSlider();
+      $this.initMedia();
     });
     document.addEventListener("MediaGalleryUpdated", function (event) {
-      $this.initSlider();
+      $this.initMedia();
     });
     document.dispatchEvent(new CustomEvent('MediaGalleryReady', {detail:$this}));
   }
@@ -21,32 +21,37 @@ class MediaGallery extends HTMLElement {
     return result;
   }
 
-  initSlider() {
+  initMedia() {
     if (this.classList.contains("media-gallery-init")) return;
     this.classList.add('media-gallery-init');
-    var isRTL = document.body.classList.contains("rtl"),
-        selector = "media-gallery-" + this.uniqid(),
-        gallery  = this.querySelector("gallery .swiper"),
+    var isRTL     = document.body.classList.contains("rtl"),
+        gallery   = this.querySelector("gallery .swiper"),
         thumbnail = this.querySelector("thumbnail .swiper"),
-        mainAPI      = {};
-        if (thumbnail) {
-            if(isRTL) thumbnail.setAttribute("dir", "rtl");
-            var sliderThumb = this.renderSlider(thumbnail);
-            Object.assign(mainAPI, { thumbs: {swiper: sliderThumb } });
+        options   = this.datasetToObject(gallery.dataset) || {},
+        mainAPI   = {};
+    this.selector  = "media-gallery-" + this.uniqid();
+    if (options.slidesPerView) {
+      if (thumbnail) {
+          if(isRTL) thumbnail.setAttribute("dir", "rtl");
+          var sliderThumb = this.renderSlider(thumbnail);
+          Object.assign(mainAPI, { thumbs: {swiper: sliderThumb } });
+      }
+      var sliderMain  = this.renderSlider(gallery, mainAPI);
+    }else{
+      this.renderGrid(gallery);
+    }
+    document.body.addEventListener("afterVariantUpdated", function (event) {
+        var variant = event.detail;
+        if("featured_media", variant){
+            var mediaId = variant.featured_media.id;
+            sliderMain.slides.forEach(function(item, index){
+              if(item.dataset.mediaId == mediaId){
+                sliderMain.slideTo(index); 
+                return false;             
+              }
+            });             
         }
-        var sliderMain  = this.renderSlider(gallery, mainAPI);
-        document.body.addEventListener("afterVariantUpdated", function (event) {
-            var variant = event.detail;
-            if("featured_media", variant){
-                var mediaId = variant.featured_media.id;
-                sliderMain.slides.forEach(function(item, index){
-                  if(item.dataset.mediaId == mediaId){
-                    sliderMain.slideTo(index); 
-                    return false;             
-                  }
-                });             
-            }
-        });
+    });
   }
 
   datasetToObject(dataset) {
@@ -98,7 +103,64 @@ class MediaGallery extends HTMLElement {
     }
     return new Swiper(element, options);
   }
-
+  
+  renderGrid(element) {
+      var options = this.datasetToObject(element.dataset) || {},
+          responsive = this.getBreakpoints(options);
+      if (responsive == undefined) return;
+      if (iClass === undefined) {
+        var gridWrapper = element.querySelector(".swiper-wrapper");
+        gridWrapper.classList.add("flex-wrap");
+        gridWrapper.querySelectorAll(":scope >*").forEach((el) => {
+          el.classList.add("alo-item");
+        });
+        var iClass = ".alo-item";
+      }
+      var selector = '.' + this.selector,
+        classes = selector + " " + iClass,
+        padding =
+          (options || {}).spaceBetween === void 0
+            ? 0
+            : options.spaceBetween / 2,
+        style = "";
+      var length = Object.keys(responsive).length;
+      Object.entries(responsive).forEach((item) => {
+        var key = parseInt(item[0]),
+          value = item[1];
+        var col = 0,
+          maxWith = 0,
+          minWith = 0;
+        Object.entries(value).forEach((entry) => {
+          var size = parseInt(entry[0]),
+            num = parseInt(entry[1]);
+          minWith = size + 1;
+          col = num;
+        });
+        if (key + 2 < length) {
+          Object.entries(responsive[key + 1]).forEach((entry) => {
+            var size = parseInt(entry[0]),
+              num = parseInt(entry[1]);
+            maxWith = size;
+            col = num;
+          });
+          style += ' @media (min-width: ' + minWith + 'px) and (max-width: ' + maxWith + 'px)';
+        } else {
+          if (key + 2 == length) return; // don't use key = length - 1;
+          Object.entries(responsive[key]).forEach((entry) => {
+            var size = parseInt(entry[0]),
+              num = parseInt(entry[1]);
+            maxWith = size;
+            col = num;
+          });
+          style += ' @media (min-width: ' + maxWith + 'px)';
+        }
+        var clearRtl = classes + ':nth-child(' + col + 'n+1){clear: left}';
+        clearRtl += ' .rtl ' + classes + ':nth-child(' + col + 'n+1){clear: right}';
+        style += ' {' + selector + '{margin: 0 -' + padding + 'px}' + classes + '{padding: 0 ' + padding + 'px; box-sizing: border-box; width: calc(100% / ' + col + ')} ' + clearRtl + '}';
+      });
+      this.appendStyle(style);    
+  }
+  
   appendStyle(css) {
     var style = document.createElement('style');
       style.setAttribute('type', 'text/css');
