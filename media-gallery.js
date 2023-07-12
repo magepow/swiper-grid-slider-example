@@ -30,7 +30,7 @@ class MediaGallery extends HTMLElement {
         options   = this.datasetToObject(gallery.dataset) || {},
         mainAPI   = {};
     this.selector  = "media-gallery-" + this.uniqid();
-    if (options.slidesPerView) {
+    if (!gallery.classList.contains('gallery-main-grid') || window.matchMedia("(max-width: 990px)").matches) {
       if (thumbnail) {
           if(isRTL) thumbnail.setAttribute("dir", "rtl");
           var sliderThumb = this.renderSlider(thumbnail);
@@ -44,12 +44,19 @@ class MediaGallery extends HTMLElement {
         var variant = event.detail;
         if("featured_media", variant){
             var mediaId = variant.featured_media.id;
-            sliderMain.slides.forEach(function(item, index){
-              if(item.dataset.mediaId == mediaId){
-                sliderMain.slideTo(index); 
-                return false;             
+            if (sliderMain) {
+              sliderMain.slides.forEach(function(item, index){
+                if(item.dataset.mediaId == mediaId){
+                  sliderMain.slideTo(index); 
+                  return false;             
+                }
+              });              
+            }else {
+              var element  = gallery.querySelector('[data-media-id="' + mediaId + '"]');
+              if(element){
+                element.scrollIntoView({block: "center", inline: "nearest", behavior: 'smooth'});                  
               }
-            });             
+            }           
         }
     });
   }
