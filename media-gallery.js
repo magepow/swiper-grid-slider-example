@@ -179,13 +179,13 @@ class MediaGallery extends HTMLElement {
   renderVenoBox(gallery) {
     document.dispatchEvent(new Event('VenoboxAssets'));
     document.addEventListener("VenoboxAssetsReady", () => {
+        if (gallery.classList.contains("venobox-init")) return;
+        gallery.classList.add('venobox-init');
         gallery.querySelectorAll('img').forEach(function(img, index){
             var src = img.getAttribute('src');
             img.setAttribute("data-href", src);
             img.setAttribute("data-gall", 'gallery');
         });
-        gallery.classList.add('venobox-init');
-        
         new VenoBox({
             selector: '.' + this.selector + ' gallery img',
             numeration: true,
