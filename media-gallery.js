@@ -30,8 +30,9 @@ class MediaGallery extends HTMLElement {
         gallery   = this.querySelector("gallery .swiper"),
         thumbnail = this.querySelector("thumbnail .swiper"),
         options   = this.datasetToObject(gallery.dataset) || {},
+        quickview = this.closest('#quick-view-modal'),
         mainAPI   = {};
-    if (!gallery.classList.contains('gallery-main-grid') || window.matchMedia(options.matchMedia).matches) {
+    if (quickview || !gallery.classList.contains('gallery-main-grid') || window.matchMedia(options.matchMedia).matches) {
       if (thumbnail) {
           if(isRTL) thumbnail.setAttribute("dir", "rtl");
           var sliderThumb = this.renderSlider(thumbnail);
