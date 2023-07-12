@@ -47,13 +47,19 @@ class MediaGallery extends HTMLElement {
             if (sliderMain) {
               sliderMain.slides.forEach(function(item, index){
                 if(item.dataset.mediaId == mediaId){
-                  sliderMain.slideTo(index); 
-                  return false;             
+                  item.classList.add('matches');
+                  sliderMain.slideTo(index);             
+                }else{
+                  item.classList.remove('matches');
                 }
               });              
             }else {
               var element  = gallery.querySelector('[data-media-id="' + mediaId + '"]');
               if(element){
+                gallery.querySelectorAll('[data-media-id]').forEach(function(item, index){
+                  item.classList.remove('matches');
+                });
+                element.classList.add('matches');
                 element.scrollIntoView({block: "center", inline: "nearest", behavior: 'smooth'});                  
               }
             }           
