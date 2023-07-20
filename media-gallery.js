@@ -183,16 +183,17 @@ class MediaGallery extends HTMLElement {
         if (gallery.classList.contains("venobox-init")) return;
         gallery.classList.add('venobox-init');
         gallery.querySelectorAll('img').forEach(function(img, index){
-            var src = img.getAttribute('src');
+            var src = img.getAttribute('data-zoom-image');
             img.setAttribute("data-href", src);
             img.setAttribute("data-gall", 'gallery');
         });
         new VenoBox({
             selector: '.' + this.selector + ' gallery img',
             numeration: true,
-            infinigall: true,
+            infinigall: false,
+            overlayClose: true,
             share: false,
-            spinner: 'rotating-plane'
+            spinner: 'bounce'
         });
     });    
   }
