@@ -169,6 +169,8 @@
         <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
       </div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
 
   <!-- Swiper JS -->
@@ -182,6 +184,10 @@
       slidesPerView: 4,
       freeMode: true,
       watchSlidesProgress: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
     });
     var swiper2 = new Swiper(".mySwiper2", {
       loop: true,
