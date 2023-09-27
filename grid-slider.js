@@ -103,7 +103,8 @@ if (!customElements.get('grid-slider')) {
         return;
       }
       var options = this.datasetToObject(this.dataset) || {};
-      options.on = {
+      var onEvent = options.on || {};
+      Object.assign(onEvent, {
         afterInit: function(){
           var swiperId = this.slidesEl.id,
             spaceBetween = this.params.spaceBetween,
@@ -112,8 +113,15 @@ if (!customElements.get('grid-slider')) {
             var style = '#' + swiperId + ' .swiper-slide{ height: calc((100% - ' + (rows -1)*spaceBetween + 'px) / ' + rows + ') !important;}';
             $this.appendStyle(style);
           }
+        },
+        autoplayTimeLeft(s, time, progress) {
+          var progressCircle = $this.querySelector(".autoplay-progress svg");
+          var progressContent = $this.querySelector(".autoplay-progress span");
+          progressCircle.style.setProperty("--progress", 1 - progress);
+          progressContent.textContent = `${Math.ceil(time / 1000)}s`;
         }
-      }
+      });
+      options.on = onEvent;
       var swiper = new Swiper(element, options);
     }
 
