@@ -117,8 +117,8 @@ if (!customElements.get('grid-slider')) {
         autoplayTimeLeft(s, time, progress) {
           var progressCircle = $this.querySelector(".autoplay-progress svg");
           var progressContent = $this.querySelector(".autoplay-progress span");
-          progressCircle.style.setProperty("--progress", 1 - progress);
-          progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+          if(progressCircle) progressCircle.style.setProperty("--progress", 1 - progress);
+          if(progressContent) progressContent.textContent = `${Math.ceil(time / 1000)}s`;
         }
       });
       options.on = onEvent;
