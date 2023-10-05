@@ -62,6 +62,11 @@ if (!customElements.get('grid-slider')) {
             try {
               value = JSON.parse(value);
             } catch (e) {
+              // value = value;
+            }
+            try {
+              value = (0, eval)('(' + value + ')');
+            } catch (e) {
               value = value;
             }
         }
@@ -78,6 +83,11 @@ if (!customElements.get('grid-slider')) {
         if (!isNaN(value)) return Number(value);
         try {
           return JSON.parse(value);
+        } catch (e) {
+          // return value;
+        }
+        try {
+          return (0, eval)('(' + value + ')');
         } catch (e) {
           return value;
         }

@@ -59,16 +59,16 @@
   {% assign size = cfg | split: '=>' | first | strip %}
   {% assign name = cfg | split: '=>' | last | strip %}
   {% if forloop.last == true %}
-    {% capture breakpoints %}{{breakpoints}} "1":{"slidesPerView":{{ col }} } }{% endcapture %}
+    {% capture breakpoints %}{{breakpoints}} '1':{'slidesPerView':{{ col }} } }{% endcapture %}
   {% else %}
     {% if settings[name] != blank %}
       {% assign col = settings[name] %}
-      {% capture breakpoints %}{{breakpoints}} "{{size}}":{"slidesPerView":{{col}} },{% endcapture %}
+      {% capture breakpoints %}{{breakpoints}} '{{size}}':{'slidesPerView':{{col}} },{% endcapture %}
     {% endif %}
   {% endif %}
 {% endfor %}
 
-{% capture gridSlider %} data-wrapper='#shopify-section-{{section.id}}' {{gridSlider}} data-breakpoints='{{breakpoints}}' {% endcapture %}
+{% capture gridSlider %} data-wrapper='#shopify-section-{{section.id}}' {{gridSlider}} data-breakpoints="{{breakpoints}}" {% endcapture %}
 {% assign grid-slider = gridSlider %}
 
 {% comment %}
