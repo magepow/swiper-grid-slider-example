@@ -79,6 +79,11 @@ class MediaGallery extends HTMLElement {
       try {
         return JSON.parse(value);
       } catch (e) {
+        // return value;
+      }
+      try {
+        return (0, eval)('(' + value + ')');
+      } catch (e) {
         return value;
       }
     });
