@@ -3,13 +3,15 @@ if (!customElements.get('grid-slider')) {
     constructor() {
       super();
       var $this = this;
-      document.addEventListener("DOMContentLoaded", function (event) {
-        if(!$this.classList.contains('ajax')) $this.initialized();
-      });
       document.addEventListener("GridSliderUpdated", function (event) {
         $this.initialized();
       });
     }
+
+    connectedCallback() {
+      if(!this.classList.contains('ajax')) this.initialized();
+    }
+  
     uniqid(length) {
       length = length || 10;
       var result = "",

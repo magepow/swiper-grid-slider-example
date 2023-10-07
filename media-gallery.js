@@ -2,14 +2,16 @@ class MediaGallery extends HTMLElement {
   constructor() {
     super();
     var $this = this;
-    document.addEventListener("DOMContentLoaded", function (event) {
-      $this.initMedia();
-    });
     document.addEventListener("MediaGalleryUpdated", function (event) {
-      $this.initMedia();
+      $this.initialized();
     });
     document.dispatchEvent(new CustomEvent('MediaGalleryReady', {detail:$this}));
   }
+
+  connectedCallback() {
+    if(!this.classList.contains('ajax')) this.initialized();
+  }
+
   uniqid(length) {
     length = length || 10;
     var result = "",
@@ -21,7 +23,7 @@ class MediaGallery extends HTMLElement {
     return result;
   }
 
-  initMedia() {
+  initialized() {
     if (this.classList.contains("media-gallery-init")) return;
     this.selector  = "media-gallery-" + this.uniqid();
     this.classList.add(this.selector);
