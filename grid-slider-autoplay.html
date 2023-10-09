@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="grid-slider.js" defer="defer"></script>
+
+  <!-- Demo styles -->
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .autoplay-progress {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--swiper-theme-color);
+    }
+
+    .autoplay-progress svg {
+      --progress: 0;
+      position: absolute;
+      left: 0;
+      top: 0px;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      stroke-width: 4px;
+      stroke: var(--swiper-theme-color);
+      fill: none;
+      stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+      stroke-dasharray: 125.6;
+      transform: rotate(-90deg);
+    }
+
+  </style>
+</head>
+
+<body>
+  <grid-slider
+    data-auto-Height="false"
+    data-autoplay='{"delay": 3000}'
+    data-centered-Slides="false"
+    data-delay="100"
+    data-direction="horizontal"
+    data-effect="slide"
+    data-grid='{"rows": 1, "fill": "row"}'
+    data-init="true"
+    data-loop="true"
+    data-observer="true"
+    data-slides-Per-View="1"
+    data-slides-Per-Group="1"
+    data-watch-Slides-Progress="true"
+    data-watch-Slides-Visibility="true"
+    data-space-Between="30"
+    data-speed="400"
+    data-navigation='{"nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev"}'
+    data-pagination='{"el": ".swiper-pagination", "clickable": "true"}'
+  >
+    <div class="swiper iSwiper">
+      <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image1.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image2.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image3.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image4.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image5.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image6.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image7.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image8.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image9.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image1.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image2.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image3.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image4.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image5.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image6.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image7.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image8.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image9.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image10.jpg"/></div>
+          <div class="swiper-slide"><img src="http://www.starplugins.com/sites/starplugins/images/jetzoom/large/image11.jpg"/></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+      <div class="autoplay-progress">
+        <svg viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="20"></circle>
+        </svg>
+        <span></span>
+      </div>
+    </div>
+  </grid-slider>
+
+</body>
+
+</html>
