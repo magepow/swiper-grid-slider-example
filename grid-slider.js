@@ -115,6 +115,12 @@ if (!customElements.get('grid-slider')) {
         return;
       }
       var options = this.datasetToObject(this.dataset) || {};
+      Object.assign(options, {
+        navigation: {
+          nextEl: '.' + this.selector + ' ' + options.navigation.nextEl,
+          prevEl: '.' + this.selector + ' ' + options.navigation.prevEl
+        }
+      });
       var onEvent = options.on || {};
       Object.assign(onEvent, {
         afterInit: function(){
