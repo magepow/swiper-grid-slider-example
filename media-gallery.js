@@ -198,7 +198,7 @@ class MediaGallery extends HTMLElement {
             selector: '.' + this.selector + ' gallery img',
             numeration: true,
             infinigall: false,
-            overlayClose: true,
+            overlayClose: false,
             share: false,
             spinner: 'bounce'
         });
