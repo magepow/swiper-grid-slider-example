@@ -277,6 +277,15 @@
                 }
             });
 
+            dialogElement.addEventListener('cancel', (event) => {
+                console.log('ESC cancel')
+                // event.preventDefault();
+                var gallery= dialogElement.querySelector('gallery'),
+                  productGallery= document.querySelector('media-gallery .product-gallery');
+                productGallery.prepend(gallery);
+                closeBtn.style.display='none'
+            });
+
             closeBtn.addEventListener("click",  ()  =>  {
                 var gallery= dialogElement.querySelector('gallery'),
                   productGallery= document.querySelector('media-gallery .product-gallery');
